@@ -15,13 +15,13 @@ public class Character {
         this.dead = false;
     }
 
-    public static void attack(Character player, Character target){
+    public void attack(Character player, Character target){
         System.out.println(player.name+"の攻撃！");
         target.hp -= player.attack;
         System.out.println(target.name+"は"+player.attack+"ダメージ受けた！");
     }
 
-    public static void chdead(Character e){
+    public void chdead(Character e){
         if(e.hp<=0){
             e.dead = true;
         }
@@ -40,11 +40,13 @@ public class Character {
 
     public void setmaxHp(int value){this.maxHp = value;}
 
+    public void setdead(boolean set){this.dead = set;}
+
     public void heal(int value){
         this.hp += value;
     }
 
-    public static void status(Character player1,Character player2){
+    public void status(Character player1,Character player2){
         System.out.println(player1.name+" VS "+player2.name);
         System.out.println(player1.name+"のHP:"+player1.hp+"　攻撃力:"+player1.attack);
         System.out.println(player2.name+"のHP:"+player2.hp+"　攻撃力:"+player2.attack);
