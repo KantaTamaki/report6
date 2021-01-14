@@ -1,22 +1,22 @@
 package jp.ac.uryukyu.ie.e205705_e205734;
 
+import java.util.Random;
+
 public class Turn {
     private int turn;
+    private Random random = new Random();
 
     public Turn(){
         this.turn = 1;
     }
     
-    public void playgame(Player player1, Enemy player2){
+    public void playbattle(Player player1, Enemy player2){
+        System.out.println("-------------------");
         player1.status(player1,player2);
         while(true){
+            System.out.println("-------------------");
             System.out.println(this.turn+"ターン目戦闘開始！");
-            player1.attack(player1,player2);
-            player2.attack(player2,player1);
-            player1.chdead(player1);
-            player2.chdead(player2);
-            System.out.println(player1.getname()+"のHP："+player1.gethp());
-            System.out.println(player2.getname()+"のHP："+player2.gethp());
+            act(player1, player2);
             if(player1.getdead()==true && player2.getdead()==true){
                 System.out.println("引き分け！");
                 break;
@@ -26,14 +26,12 @@ public class Turn {
                 break;
             }else if(player2.getdead()==true){
                 System.out.println(player1.getname()+"の勝利！");
-                player1.chLevelUp(player2.giveExp);
+                player1.chLevelUp(player2.getgiveExp());
                 this.turn =1;
                 System.out.println("もう一度戦いますか？");
                 System.out.println("「y」：はい　　「n」：いいえ");
                 if(new Scansystem().inputy_n()){
-                    int heal = player2.getmaxHp()-player2.gethp();
-                    player2.heal(heal);
-                    player2.setdead(false);
+                    reset(player2);
                     player1.status(player1,player2);
                     continue;
                 }else{
@@ -49,4 +47,28 @@ public class Turn {
             }
         }
     }
+    public void act(Player player1, Enemy player2){
+        player1.attack(player1,player2,random.nextInt(4));
+        player2.chdead(player2);
+        if(player2.getdead()){
+            System.out.println(player2.getname()+"は倒れた！");
+        }else{
+            player2.attack(player2,player1,random.nextInt(4));
+        }
+        player1.chdead(player1);
+        System.out.println(player1.getname()+"のHP："+player1.gethp());
+        System.out.println(player2.getname()+"のHP："+player2.gethp());
+    }
+
+    public void reset(Enemy e){
+        int heal = e.getmaxHp()-e.gethp();
+        e.heal(heal);
+        e.setdead(false);
+        e.setattack(e.getmaxAttack());
+        e.setpoison(false);
+        e.setsleep(false);
+        e.setsleepturn(0);
+    }
+
+    
 }

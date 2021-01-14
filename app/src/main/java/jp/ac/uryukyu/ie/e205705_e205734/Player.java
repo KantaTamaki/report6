@@ -37,4 +37,46 @@ public class Player extends Character {
         System.out.println(super.getname()+"はレベルアップにより最大HP+20,攻撃力+20ステータスUPした！");
     }
 
+    @Override
+    public void attack(Character player, Character target,int value){
+        switch(value){
+            case 0:
+                System.out.println(player.getname()+"の攻撃！");
+                System.out.println("特殊攻撃！一撃必殺！！");
+                int attackvalue = target.gethp();
+                int lackhp = target.gethp()-attackvalue;
+                target.sethp(lackhp);
+                System.out.println(target.getname()+"は"+attackvalue+"ダメージ受けた！");
+                break;
+            case 1:
+                System.out.println(player.getname()+"の攻撃！");
+                System.out.println("特殊攻撃！ポイズンアタック！！");
+                int lackhp2 = target.gethp()-player.getattack();
+                target.sethp(lackhp2);
+                if(target.getpoison()){
+                    System.out.println(target.getname()+"はすでに毒状態だ！"+player.getattack()+"ダメージ受けた！");
+                }else{
+                    target.setpoison(true);
+                    System.out.println(target.getname()+"は"+player.getattack()+"ダメージ受け、毒状態になった！");
+                }
+                break;
+            case 2:
+                System.out.println(player.getname()+"の攻撃！");
+                System.out.println("特殊攻撃！さいみんじゅつ！！");
+                int lackhp3 = target.gethp()-player.getattack();
+                target.sethp(lackhp3);
+                if(target.getsleep()){
+                    System.out.println(target.getname()+"はすでに眠っている！"+player.getattack()+"ダメージ受けた！");
+                }else{
+                    target.setsleep(true);
+                    System.out.println(target.getname()+"は"+player.getattack()+"ダメージ受け、眠ってしまった！");
+                }
+                break;
+            default:
+                super.attack(player, target, value);
+        }
+    }
+    public void shstatus(Player e){
+        System.out.println(e.getname()+":Lv."+e.level+":HP "+e.gethp()+":攻撃力　"+e.getattack());
+    }
 }
