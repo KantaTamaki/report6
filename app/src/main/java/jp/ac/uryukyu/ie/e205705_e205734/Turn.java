@@ -61,8 +61,7 @@ public class Turn {
     }
 
     public void reset(Enemy e){
-        int heal = e.getmaxHp()-e.gethp();
-        e.heal(heal);
+        e.sethp(e.getmaxHp());
         e.setdead(false);
         e.setattack(e.getmaxAttack());
         e.setpoison(false);

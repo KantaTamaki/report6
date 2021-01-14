@@ -15,8 +15,8 @@ public class Scansystem {
                     return false;
                 default:
                     continue;
+                }
             }
-        }
     }
 
     public boolean input_y(){
@@ -27,7 +27,7 @@ public class Scansystem {
                     return true;
                 default:
                     continue;
+                }
             }
-        }
     }
 }

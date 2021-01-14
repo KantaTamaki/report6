@@ -4,8 +4,8 @@ public class Dogame {
     public void playgame(){
         var hero = new Player("勇者", 10, 100);
         var enemy = new Enemy("ゴブリン", 0, 100,10);
-        var enemy2 = new Enemy("ボスゴブリン", 0, 100,15);
-        var enemy3 = new Enemy("魔王",0,100,20);
+        var enemy2 = new Enemy("ボスゴブリン", 0, 150,15);
+        var enemy3 = new Enemy("魔王",0,200,20);
         var master = new Turn();
 
         master.playbattle(hero, enemy);
