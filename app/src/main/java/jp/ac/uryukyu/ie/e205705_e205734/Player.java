@@ -31,10 +31,10 @@ public class Player extends Character {
 
     public void statusup(){
         this.level += 1;
-        super.setattack(super.getattack()+20);
-        super.setmaxHp(super.getmaxHp()+20);
+        super.setattack(super.getattack()+10);
+        super.setmaxHp(super.getmaxHp()+30);
         System.out.println(super.getname()+"はLv."+this.level+"に上がった！");
-        System.out.println(super.getname()+"はレベルアップにより最大HP+20,攻撃力+20ステータスUPした！");
+        System.out.println(super.getname()+"はレベルアップにより最大HP+30,攻撃力+10ステータスUPした！");
     }
 
     @Override
