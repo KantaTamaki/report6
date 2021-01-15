@@ -48,7 +48,8 @@ public class Turn {
         }
     }
     public void act(Player player1, Enemy player2){
-        player1.attack(player1,player2,random.nextInt(4));
+        Slot_system exam = new Slot_system();
+        player1.attack(player1,player2,exam.Slot());
         player2.chdead(player2);
         if(player2.getdead()){
             System.out.println(player2.getname()+"は倒れた！");
