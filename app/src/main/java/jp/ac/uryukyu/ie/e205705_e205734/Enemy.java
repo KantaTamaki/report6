@@ -1,16 +1,42 @@
 package jp.ac.uryukyu.ie.e205705_e205734;
 
+/**
+ * Enemyクラス。Characterクラスの子クラス。
+ * 敵キャラの情報を管理する。追加情報として、相手に与える経験値を追加。
+ * 敵キャラの行動に関するメソッドを用意。
+ */
 public class Enemy extends Character{
 
+    /**
+     * 自身が倒された時に、相手に与える経験値
+     */
     private int giveExp;
 
+    /**
+     * giveexpのgetterメソッド
+     * @return　相手に与える経験値
+     */
     public int getgiveExp(){return this.giveExp;}
 
+    /**
+     * コンストラクタ。初期値を設定。
+     * @param name　敵キャラの名前
+     * @param attack　敵キャラの攻撃力
+     * @param hp　敵キャラのHP
+     * @param giveExp　相手に与える経験値
+     */
     public Enemy(String name,int attack,int hp,int giveExp){
         super(name, attack, hp);
         this.giveExp = giveExp;
     }
 
+    /**
+     * 敵キャラの攻撃メソッド
+     * valueの値に応じた技を出す
+     * @param player attackを使用する敵キャラ
+     * @param target　attackを受けるキャラクター
+     * @param value　技を呼び出す引数
+     */
     @Override
     public void attack(Character player, Character target,int value){
         if(super.getsleep() == true){

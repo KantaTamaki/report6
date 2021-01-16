@@ -27,7 +27,7 @@ public class Slot_system extends Exception {
             }else if(count[0] == 1 && count[1] == 1){
                 System.out.println("                                ");
             }else {
-                System.out.println("     1~3の範囲で入力してください     ");
+                System.out.println("     1~2の範囲で入力してください     ");
             }
         }
         if (slotArray[0] == slotArray[1] ) {
@@ -52,7 +52,7 @@ public class Slot_system extends Exception {
         if (num == a) {
             if (count[b] == 0) {
                 slotArray[c] = (int) (Math.random() * 3);
-                System.out.println(slotArray[c]);
+                System.out.println(design.pictures(slotArray[c]));
                 count[b] = 1;
 
             } else {

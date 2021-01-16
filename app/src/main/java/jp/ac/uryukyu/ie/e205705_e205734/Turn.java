@@ -2,14 +2,34 @@ package jp.ac.uryukyu.ie.e205705_e205734;
 
 import java.util.Random;
 
+/**
+ * Turnクラス。
+ * １ターンごとの処理や行動のメソッド、バトル自体のメソッドを用意。
+ */
 public class Turn {
+    /**
+     * ターン数
+     */
     private int turn;
+
+    /**
+     * Randomクラスのインスタンス
+     */
     private Random random = new Random();
 
+    /**
+     * コンストラクタ。初期値を設定。
+     */
     public Turn(){
         this.turn = 1;
     }
     
+    /**
+     * プレイヤー、敵キャラがバトルするメソッド
+     * バトル実行、ターン数や各キャラのステータスの表示、勝敗判定を行う
+     * @param player1　プレイヤー
+     * @param player2　敵キャラ
+     */
     public void playbattle(Player player1, Enemy player2){
         System.out.println("----------------------------");
         player1.status(player1,player2);
@@ -34,8 +54,10 @@ public class Turn {
                 System.out.println("もう一度戦いますか？");
                 System.out.println("「1」：はい　　「2」：いいえ");
                 if(new Scansystem().inputy_n()){
-                    reset(player2);
+                    player2.reset(player2);
+                    System.out.println("----------------------------");
                     player1.status(player1,player2);
+                    System.out.println("----------------------------");
                     continue;
                 }else{
                     break;
@@ -50,6 +72,12 @@ public class Turn {
         }
     }
 
+    /**
+     * 最終バトル（ボス戦）のメソッド
+     * バトル実行、ターン数や各キャラのステータスの表示、勝敗判定を行う
+     * @param player1　プレイヤー
+     * @param player2　敵キャラ（ボス）
+     */
     public void lastbattle(Player player1, Enemy player2){
         System.out.println("----------------------------");
         player1.status(player1,player2);
@@ -71,7 +99,7 @@ public class Turn {
                 this.turn =1;
                 System.out.println("次へ進む");
                 if(new Scansystem().input_y()){
-                    reset(player2);
+                    player2.reset(player2);
                     break;
                 }
             }else{
@@ -84,6 +112,12 @@ public class Turn {
         }
     }
 
+    /**
+     * プレイヤー、敵キャラの行動メソッド
+     * 各キャラの攻撃、生死判定、ステータス表示を行い、技抽選に必要なスロットを回す。
+     * @param player1　プレイヤー
+     * @param player2　敵キャラ
+     */
     public void act(Player player1, Enemy player2){
         Slot_system exam = new Slot_system();
         player1.attack(player1,player2,exam.Slot());
@@ -98,14 +132,7 @@ public class Turn {
         System.out.println(player2.getname()+"のHP："+player2.gethp());
     }
 
-    public void reset(Enemy e){
-        e.sethp(e.getmaxHp());
-        e.setdead(false);
-        e.setattack(e.getmaxAttack());
-        e.setpoison(false);
-        e.setsleep(false);
-        e.setsleepturn(0);
-    }
+    
 
     
 }
