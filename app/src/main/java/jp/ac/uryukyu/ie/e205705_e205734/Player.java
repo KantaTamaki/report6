@@ -79,10 +79,12 @@ public class Player extends Character {
      */
     @Override
     public void attack(Character player, Character target,int value){
+        waitMoment(1000);
         switch(value){
             case 0:
                 System.out.println(player.getname()+"の攻撃！");
                 System.out.println("特殊攻撃！一撃必殺！！");
+                waitMoment(1500);
                 int attackvalue = target.gethp();
                 int lackhp = target.gethp()-attackvalue;
                 target.sethp(lackhp);
@@ -91,6 +93,7 @@ public class Player extends Character {
             case 1:
                 System.out.println(player.getname()+"の攻撃！");
                 System.out.println("特殊攻撃！ポイズンアタック！！");
+                waitMoment(1500);
                 int lackhp2 = target.gethp()-player.getattack();
                 target.sethp(lackhp2);
                 if(target.getpoison()){
@@ -103,6 +106,7 @@ public class Player extends Character {
             case 2:
                 System.out.println(player.getname()+"の攻撃！");
                 System.out.println("特殊攻撃！さいみんじゅつ！！");
+                waitMoment(1500);
                 int lackhp3 = target.gethp()-player.getattack();
                 target.sethp(lackhp3);
                 if(target.getsleep()){

@@ -80,6 +80,7 @@ public class Character {
      * @param value 技を呼び出す引数(継承先で使う)
     */
     public void attack(Character player, Character target,int value){
+        waitMoment(1500);
         System.out.println(player.name+"の通常攻撃！");
         target.hp -= player.attack;
         System.out.println(target.name+"は"+player.attack+"ダメージ受けた！");
@@ -216,5 +217,17 @@ public class Character {
         e.sleepturn = 0;
     }
     
+    /**
+     * 時間間隔を開けるメソッド
+     * 実行結果を表示する時間間隔を作る。
+     * @param time　止めたい時間
+     */
+    public void waitMoment(int time) {
+        try {
+            Thread.sleep(time);
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
     
 }

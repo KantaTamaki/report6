@@ -39,12 +39,14 @@ public class Enemy extends Character{
      */
     @Override
     public void attack(Character player, Character target,int value){
+        waitMoment(1000);
         if(super.getsleep() == true){
             System.out.println(player.getname()+"は眠っている！");
             super.sleepturn(player,2);
         }else{
             if(super.getpoison() == true){
                 System.out.println(player.getname()+"は毒状態だ！");
+                waitMoment(1500);
                 int poisonDmg = player.gethp()/5;
                 int lackhp = player.gethp()-poisonDmg;
                 player.sethp(lackhp);
@@ -52,6 +54,7 @@ public class Enemy extends Character{
             }
             switch(value){
                 case 0:
+                    waitMoment(1500);
                     System.out.println(player.getname()+"の連続攻撃！");
                     int attackvalue = player.getattack()*2;
                     int lackhp1 = target.gethp()-attackvalue;
@@ -59,6 +62,7 @@ public class Enemy extends Character{
                     System.out.println(target.getname()+"は"+attackvalue+"ダメージ受けた！");
                     break;
                 case 1:
+                    waitMoment(1500);
                     System.out.println(player.getname()+"の治癒魔法！");
                     int heal = player.getmaxHp()-player.gethp();
                     super.heal(heal);
@@ -69,6 +73,7 @@ public class Enemy extends Character{
                     }
                     break;
                 case 2:
+                    waitMoment(1500);
                     System.out.println(player.getname()+"の怒り！");
                     player.setattack(player.getattack()+20);
                     System.out.println(player.getname()+"は攻撃力が上がった！攻撃力："+player.getattack());

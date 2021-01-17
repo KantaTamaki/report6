@@ -127,12 +127,9 @@ public class Turn {
         }else{
             player2.attack(player2,player1,random.nextInt(4));
         }
+        player1.waitMoment(1500);
         player1.chdead(player1);
         System.out.println(player1.getname()+"のHP："+player1.gethp());
         System.out.println(player2.getname()+"のHP："+player2.gethp());
     }
-
-    
-
-    
 }
